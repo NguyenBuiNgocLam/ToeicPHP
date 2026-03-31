@@ -3,17 +3,23 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
-require_once 'connect.php';
 
+require_once 'connect.php';
 $conn = connectDatabase();
 
+// Thêm kiểm tra dữ liệu JSON gửi lên
 $data = json_decode(file_get_contents("php://input"), true);
-$identifier = $data['identifier'];
-$password = $data['password'];
+if (!is_array($data)) {
+    echo json_encode(["error" => "Dữ liệu gửi lên không phải là JSON hợp lệ"], JSON_UNESCAPED_UNICODE);
+    exit();
+}
+$identifier = $data['identifier'] ?? null;
+$password = $data['password'] ?? null;
 
 if (empty($identifier) || empty($password)) {
     echo json_encode(["error" => "Thiếu thông tin đăng nhập"], JSON_UNESCAPED_UNICODE);
@@ -39,5 +45,4 @@ if (!$user) {
 
 echo json_encode(["message" => "Đăng nhập thành công", "user" => $user], JSON_UNESCAPED_UNICODE);
 mysqli_close($conn);
-
 ?>
