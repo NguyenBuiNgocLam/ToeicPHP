@@ -1,10 +1,10 @@
 <?php
 function connectDatabase() {
     $conn = mysqli_connect(
-        "sql100.infinityfree.com",   // host
-        "if0_41515072",              // username
-        "Lamngochai1408",          // password
-        "if0_41515072_database_flutter"      // database
+        "sql5.freesqldatabase.com",   // host
+        "sql5821814",              // username
+        "RaG36YxqYn",          // password
+        "sql5821814"      // database
     );
 
     if (!$conn) {
