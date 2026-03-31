@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
-require_once 'C:/xampp/htdocs/testtoeic/connect.php';
+require_once 'connect.php';
 
 $conn = connectDatabase();
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
