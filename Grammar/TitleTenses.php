@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
-require_once 'C:/xampp/htdocs/toeicphp/connect.php';
+require_once 'connect.php';
 
 $conn = connectDatabase();
 
